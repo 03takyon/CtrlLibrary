@@ -19,9 +19,9 @@ public class UserInterface {
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setBackground(Color.GRAY);
 		
-		NavBar navBar = new NavBar(frame); // UserInterface HAS-A navBar
-		
 		GameLibrary gameLibrary = new GameLibrary(); // UserInterface HAS-A UserInterface
+		
+		NavBar navBar = new NavBar(frame, gameLibrary); // UserInterface HAS-A navBar
 		
 		frame.add(navBar, BorderLayout.NORTH);
 		frame.add(gameLibrary, BorderLayout.CENTER);

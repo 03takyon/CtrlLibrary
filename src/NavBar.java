@@ -20,13 +20,13 @@ public class NavBar extends JPanel {
 	private SearchField searchField; // NavBar HAS-A searchField
 	private AddGame addGame; // NavBar HAS-A addGame
 	
-	public NavBar(JFrame frame) {
+	public NavBar(JFrame frame, GameLibrary gameLibrary) {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.DARK_GRAY);
 		
 		searchField = new SearchField();
 		
-		addGame = new AddGame(frame);
+		addGame = new AddGame(frame, gameLibrary);
 		
 		this.add(searchField, BorderLayout.EAST);
 		this.add(addGame, BorderLayout.WEST);

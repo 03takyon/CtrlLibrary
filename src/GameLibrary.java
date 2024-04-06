@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
  * Lead Author(s):
@@ -15,9 +18,16 @@ import javax.swing.JPanel;
 // GameLibrary IS-A JPanel
 public class GameLibrary extends JPanel {
 	private static final long serialVersionUID = 1L; // temporary, just here to get rid of warning for now
+	private List<Game> games = new ArrayList<>();
 	
 	public GameLibrary() {
-		this.setLayout(new GridLayout(3, 0));
+		this.setLayout(new GridLayout(0, 1));
 		this.setBackground(Color.GRAY);
+	}
+	
+	public void addGame(Game game) {
+		games.add(game);
+		this.add(new JLabel(game.getTitle()));
+		this.revalidate();
 	}
 }
