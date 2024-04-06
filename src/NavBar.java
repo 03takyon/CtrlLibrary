@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JPanel;
 /**
@@ -22,7 +21,6 @@ public class NavBar extends JPanel {
 	public NavBar() {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.DARK_GRAY);
-		this.setPreferredSize(new Dimension(800, 50));
 		
 		searchField = new SearchField();
 		
