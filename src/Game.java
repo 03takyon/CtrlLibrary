@@ -22,4 +22,12 @@ public class Game {
 	public String getTitle() {
 		return title;
 	}
+	
+	public String getGenre() {
+		return genre;
+	}
+	
+	public String getDeveloper() {
+		return developer;
+	}
 }
