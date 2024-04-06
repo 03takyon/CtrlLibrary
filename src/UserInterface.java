@@ -21,7 +21,10 @@ public class UserInterface {
 		
 		NavBar navBar = new NavBar(); // UserInterface HAS-A navBar
 		
+		GameLibrary gameLibrary = new GameLibrary(); // UserInterface HAS-A UserInterface
+		
 		frame.add(navBar, BorderLayout.NORTH);
+		frame.add(gameLibrary, BorderLayout.CENTER);
 		
 		frame.setVisible(true);
 	}
