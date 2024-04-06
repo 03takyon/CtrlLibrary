@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 /**
  * Lead Author(s):
@@ -20,11 +19,5 @@ public class GameLibrary extends JPanel {
 	public GameLibrary() {
 		this.setLayout(new GridLayout(3, 0));
 		this.setBackground(Color.GRAY);
-		
-		// adding placeholder buttons to visualize the grid layout
-		for (int i = 1; i <= 9; i++) {
-			JButton button = new JButton("Placeholder " + i);
-			this.add(button);
-		}
 	}
 }
