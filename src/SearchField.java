@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,7 +21,6 @@ public class SearchField extends JPanel {
 	private Dimension preferredSize; // SearchField HAS-A preferredSize;
 	
 	public SearchField() {
-		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		this.setBackground(Color.DARK_GRAY);
 		
 		textField = new JTextField(20);
