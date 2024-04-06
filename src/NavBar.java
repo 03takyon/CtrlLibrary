@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
  * Lead Author(s):
@@ -19,13 +20,13 @@ public class NavBar extends JPanel {
 	private SearchField searchField; // NavBar HAS-A searchField
 	private AddGame addGame; // NavBar HAS-A addGame
 	
-	public NavBar() {
+	public NavBar(JFrame frame) {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.DARK_GRAY);
 		
 		searchField = new SearchField();
 		
-		addGame = new AddGame();
+		addGame = new AddGame(frame);
 		
 		this.add(searchField, BorderLayout.EAST);
 		this.add(addGame, BorderLayout.WEST);
