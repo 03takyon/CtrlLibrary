@@ -1,6 +1,6 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 /**
@@ -17,9 +17,15 @@ import javax.swing.JPanel;
 public class NavBar extends JPanel {
 	private static final long serialVersionUID = 1L; // temporary, just here to get rid of warning for now
 	
+	private SearchField searchField; // NavBar HAS-A searchField
+	
 	public NavBar() {
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.setLayout(new BorderLayout());
 		this.setBackground(Color.DARK_GRAY);
 		this.setPreferredSize(new Dimension(800, 50));
+		
+		searchField = new SearchField();
+		
+		this.add(searchField, BorderLayout.EAST);
 	}
 }
