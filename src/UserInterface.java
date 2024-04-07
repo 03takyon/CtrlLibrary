@@ -6,22 +6,26 @@ import javax.swing.JFrame;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.5.2024.003
+ * Version/date: 4.1.2024.001
  * 
  * Responsibilities of class:
  * 
  */
 public class UserInterface {
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("CtrlLibrary"); // UserInterface HAS-A frame
+	JFrame frame; // UserInterface HAS-A frame
+	GameLibrary gameLibrary; // UserInterface HAS-A UserInterface
+	NavBar navBar; // UserInterface HAS-A navBar
+	
+	public void createAndShowGUI() {
+		frame = new JFrame("CtrlLibrary");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(900, 600);
 		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setBackground(Color.GRAY);
 		
-		GameLibrary gameLibrary = new GameLibrary(); // UserInterface HAS-A UserInterface
+		gameLibrary = new GameLibrary();
 		
-		NavBar navBar = new NavBar(frame, gameLibrary); // UserInterface HAS-A navBar
+		navBar = new NavBar(frame, gameLibrary);
 		
 		frame.add(navBar, BorderLayout.NORTH);
 		frame.add(gameLibrary, BorderLayout.CENTER);
