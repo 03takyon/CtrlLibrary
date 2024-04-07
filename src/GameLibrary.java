@@ -1,5 +1,5 @@
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class GameLibrary extends JPanel {
 	private List<Game> games = new ArrayList<>();
 	
 	public GameLibrary() {
-		this.setLayout(new GridLayout(0, 1));
+		this.setLayout(new FlowLayout());
 		this.setBackground(Color.GRAY);
 	}
 	
