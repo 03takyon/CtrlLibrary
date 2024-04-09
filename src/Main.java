@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 /**
  * Lead Author(s):
  * @author Elliott Wahl
@@ -9,7 +11,10 @@
  */
 public class Main {
 	public static void main(String[] args) {
-		UserInterface ui = new UserInterface();
-		ui.createAndShowGUI();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new UserInterface();
+			}
+		});
 	}
 }

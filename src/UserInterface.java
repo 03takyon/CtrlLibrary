@@ -6,7 +6,7 @@ import javax.swing.JFrame;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.1.2024.001
+ * Version/date: 4.9.2024.002
  * 
  * Responsibilities of class:
  * 
@@ -16,7 +16,7 @@ public class UserInterface {
 	GameLibrary gameLibrary; // UserInterface HAS-A UserInterface
 	NavBar navBar; // UserInterface HAS-A navBar
 	
-	public void createAndShowGUI() {
+	public UserInterface() {
 		frame = new JFrame("CtrlLibrary");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(900, 600);
