@@ -1,10 +1,11 @@
-import javax.swing.SwingUtilities;
+package com.elliottwahl.ctrllibrary;
 
+import javax.swing.SwingUtilities;
 /**
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.7.2024.004
+ * Version/date: 4.9.2024.004
  * 
  * Responsibilities of class:
  * 
