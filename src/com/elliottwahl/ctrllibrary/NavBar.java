@@ -3,7 +3,6 @@ package com.elliottwahl.ctrllibrary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,8 +10,6 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
 /**
  * Lead Author(s):
  * @author Elliott Wahl
@@ -49,7 +46,7 @@ public class NavBar {
 		addGameBtn.setText("Add Game");
 		addGameBtn.setBackground(Color.GRAY);
 		addGameBtn.setForeground(Color.WHITE);
-		addGameBtn.setFocusPainted(false);
+		addGameBtn.setFocusPainted(false);		
 		buttonPanel.add(addGameBtn, gbc);
 		panel.add(buttonPanel, BorderLayout.WEST);
 		
