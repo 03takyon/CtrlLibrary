@@ -24,6 +24,7 @@ public class UserInterface {
 		frame = new JFrame("CtrlLibrary");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(820, 700);
+		frame.setLocationRelativeTo(null);
 		
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.DARK_GRAY);
