@@ -5,7 +5,6 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 /**
  * Lead Author(s):
  * @author Elliott Wahl
