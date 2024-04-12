@@ -31,6 +31,7 @@ public class GameLibrary {
 		noGamesLbl = new JLabel("No games were found", SwingConstants.CENTER);
 		noGamesLbl.setForeground(Color.WHITE);
 		noGamesLbl.setFont(new Font("Arial", Font.BOLD, 14));
+		noGamesLbl.setVisible(false);
 		
 		if (games.isEmpty()) {
 			noGamesLbl.setVisible(true);
