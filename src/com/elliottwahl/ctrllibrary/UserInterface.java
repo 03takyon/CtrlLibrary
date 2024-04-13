@@ -30,11 +30,11 @@ public class UserInterface {
 		panel.setBackground(Color.DARK_GRAY);
 		frame.add(panel);
 		
-		navBar = new NavBar();
-		panel.add(navBar.getPanel(), BorderLayout.NORTH);
-		
 		gameLibrary = new GameLibrary();
 		panel.add(gameLibrary.getPanel(), BorderLayout.CENTER);
+		
+		navBar = new NavBar(gameLibrary);
+		panel.add(navBar.getPanel(), BorderLayout.NORTH);
 		
 		frame.setVisible(true);
 	}

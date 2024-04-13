@@ -31,13 +31,20 @@ public class GameLibrary {
 		noGamesLbl = new JLabel("No games were found", SwingConstants.CENTER);
 		noGamesLbl.setForeground(Color.WHITE);
 		noGamesLbl.setFont(new Font("Arial", Font.BOLD, 14));
-		noGamesLbl.setVisible(false);
-		
-		if (games.isEmpty()) {
-			noGamesLbl.setVisible(true);
-		}
+		noGamesLbl.setVisible(true);
 		
 		panel.add(noGamesLbl, BorderLayout.CENTER);
+	}
+	
+	public void addGame(Game game) {
+		games.add(game);
+		
+		noGamesLbl.setVisible(false);
+		
+		JLabel gameLbl = new JLabel(game.getTitle());
+		gameLbl.setForeground(Color.WHITE);
+		
+		panel.add(gameLbl);
 	}
 	
 	public JPanel getPanel() {
