@@ -62,6 +62,7 @@ public class NavBar {
 		searchField = new JTextField();
 		searchField.setPreferredSize(new Dimension(200, 30));
 		searchField.setBackground(Color.GRAY);
+		searchField.setForeground(Color.WHITE);
 		searchPanel.add(searchField, gbc);
 		panel.add(searchPanel, BorderLayout.EAST);
 	}
