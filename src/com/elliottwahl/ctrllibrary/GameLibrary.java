@@ -3,7 +3,8 @@ package com.elliottwahl.ctrllibrary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.ArrayList;
+import java.awt.GridLayout;
+import java.util.HashMap;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,13 +21,13 @@ import javax.swing.SwingConstants;
 public class GameLibrary {
 	private JPanel panel; // GameLibrary HAS-A panel
 	private JLabel noGamesLbl; // GameLibrary HAS-A noGamesLbl
-	private ArrayList<Game> games; // GameLibrary HAS-A games
+	private HashMap<Game, String> games; // GameLibrary HAS-A games
 
 	public GameLibrary() {
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.DARK_GRAY);
 		
-		games = new ArrayList<>();
+		games = new HashMap<>();
 		
 		noGamesLbl = new JLabel("No games were found", SwingConstants.CENTER);
 		noGamesLbl.setForeground(Color.WHITE);
@@ -37,14 +38,20 @@ public class GameLibrary {
 	}
 	
 	public void addGame(Game game) {
-		games.add(game);
+		games.put(game, game.getPath());
 		
-		noGamesLbl.setVisible(false);
+		if (games.size() == 1) {
+			panel.removeAll();
+			panel.setLayout(new GridLayout(0, 4));
+			panel.setBackground(Color.DARK_GRAY);
+		}
 		
-		JLabel gameLbl = new JLabel(game.getTitle());
+		JLabel gameLbl = new JLabel(game.getTitle(), SwingConstants.CENTER);
 		gameLbl.setForeground(Color.WHITE);
-		
 		panel.add(gameLbl);
+
+		panel.revalidate();
+		panel.repaint();
 	}
 	
 	public JPanel getPanel() {
