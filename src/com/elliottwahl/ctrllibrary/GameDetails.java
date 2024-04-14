@@ -25,7 +25,7 @@ public class GameDetails {
 	private JButton browseBtn; // GameDetails HAS-A browseBtn
 	private JPanel panel; // GameDetails HAS-A panel
 	private JFileChooser fileChooser; // GameDetails HAS-A fileChooser
-	private JLabel pathLabel; // GameDetails HAS-A pathLabel
+	private JLabel titleLabel; // GameDetails HAS-A titleLabel
 	
 	public GameDetails(GameLibrary gameLibrary) {
 		panel = new JPanel();
@@ -52,20 +52,20 @@ public class GameDetails {
 				if (option == JFileChooser.APPROVE_OPTION) {
 					File selectedFile = fileChooser.getSelectedFile();
 					
-					pathLabel.setText(selectedFile.getName());
+					titleLabel.setText(selectedFile.getName());
 					
-					Game game = new Game(selectedFile.getName(), selectedFile.getName());
+					Game game = new Game(selectedFile.getName(), selectedFile.getAbsolutePath());
 					
 					gameLibrary.addGame(game);
 				}
 			}
 		});
 		
-		pathLabel = new JLabel("No file selected");
-		pathLabel.setForeground(Color.WHITE);
+		titleLabel = new JLabel("No file selected");
+		titleLabel.setForeground(Color.WHITE);
 		
 		panel.add(browseBtn);
-		panel.add(pathLabel);
+		panel.add(titleLabel);
 		
 		detailsDialog.setVisible(true);
 	}
