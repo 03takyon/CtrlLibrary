@@ -1,4 +1,7 @@
 package com.elliottwahl.ctrllibrary;
+
+import javax.swing.ImageIcon;
+
 /**
  * Lead Author(s):
  * @author Elliott Wahl
@@ -13,10 +16,12 @@ public class Game {
 	private String genre; // Game HAS-A genre
 	private String developer; // Game HAS-A developer
 	private String path; // Game HAS-A path
+	private ImageIcon icon; // Game HAS-A icon
 	
-	public Game(String title, String path) {
+	public Game(String title, String path, ImageIcon icon) {
 		this.title = title;
 		this.path = path;
+		this.icon = icon;
 	}
 	
 	public String getTitle() {
@@ -45,5 +50,13 @@ public class Game {
 	
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	
+	public ImageIcon getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(ImageIcon icon) {
+		this.icon = icon;
 	}
 }

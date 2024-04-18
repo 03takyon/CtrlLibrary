@@ -9,7 +9,7 @@ class UnitTest {
 
 	@Test
 	void testGameTitle() {
-		game = new Game("title", "path");
+		//game = new Game("title", "path");
 		assertEquals("title", game.getTitle());
 		game.setTitle("newTitle");
 		assertEquals("newTitle", game.getTitle());

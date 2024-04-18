@@ -3,10 +3,12 @@ package com.elliottwahl.ctrllibrary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -35,13 +37,20 @@ public class GameDetails {
 	private JTextField changeTitleFld; // GameDetails HAS-A changeTitleFld;
 	private JButton submitBtn; // GameDetails HAS-A submitBtn
 	private JPanel submitPanel; // GameDetails HAS-A submitPanel
-	private File selectedFile; // GameDetails HAS-A selectedFile
+	private File selectedGame; // GameDetails HAS-A selectedGame
+	private JButton selectImgBtn; // GameDetails HAS-A selectImgBtn
+	private ImageIcon icon; // GameDetails HAS-A icon
+	private JPanel imgPanel; // GameDetails HAS-A imgPanel
+	private JPanel selectImgPanel; //GameDetails HAS-A selectImgPanel
+	private JLabel imgLabel; // GameDetails HAS-A imgLabel
 	
 	public GameDetails(GameLibrary gameLibrary) {
 		detailsDialog = new JDialog();
 		detailsDialog.setSize(410, 350);
 		detailsDialog.setLocationRelativeTo(null);
 		detailsDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+		icon = new ImageIcon("images/default.jpg");
 		
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.DARK_GRAY);
@@ -80,11 +89,11 @@ public class GameDetails {
 				String newTitle = changeTitleFld.getText();
 				
 				if (newTitle.isEmpty()) {
-					Game game = new Game(selectedFile.getName(), selectedFile.getAbsolutePath());
+					Game game = new Game(selectedGame.getName(), selectedGame.getAbsolutePath(), icon);
 					
 					gameLibrary.addGame(game);
 				} else {
-					Game game = new Game(newTitle, selectedFile.getAbsolutePath());
+					Game game = new Game(newTitle, selectedGame.getAbsolutePath(), icon);
 					
 					gameLibrary.addGame(game);
 				}
@@ -105,9 +114,9 @@ public class GameDetails {
 				int option = fileChooser.showOpenDialog(detailsDialog);
 				
 				if (option == JFileChooser.APPROVE_OPTION) {
-					selectedFile = fileChooser.getSelectedFile();
+					selectedGame = fileChooser.getSelectedFile();
 					
-					titleLbl.setText(selectedFile.getName());
+					titleLbl.setText(selectedGame.getName());
 				}
 			}
 		});
@@ -118,6 +127,52 @@ public class GameDetails {
 		selectPanel.add(browseBtn);
 		selectPanel.add(titleLbl);
 		
+		imgPanel = new JPanel(new BorderLayout());
+		imgPanel.setPreferredSize(new Dimension(128, 128));
+		imgPanel.setBackground(Color.DARK_GRAY);
+		
+		imgLabel = new JLabel(icon);
+		imgPanel.add(imgLabel);
+		
+		panel.add(imgPanel, BorderLayout.EAST);
+		
+		selectImgPanel = new JPanel();
+		selectImgPanel.setBackground(Color.DARK_GRAY);
+		
+		selectImgBtn = new JButton("Select Image");
+		selectImgBtn.setBackground(Color.GRAY);
+		selectImgBtn.setForeground(Color.WHITE);
+		selectImgBtn.setFocusPainted(false);
+		selectImgBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int option = fileChooser.showOpenDialog(detailsDialog);
+				
+				if (option == JFileChooser.APPROVE_OPTION) {
+					File selectedImage = fileChooser.getSelectedFile();
+					
+					icon = new ImageIcon(selectedImage.getPath());
+					
+					ImageIcon resizedIcon = resizeIcon(icon, imgPanel.getWidth(), imgPanel.getHeight());
+					
+					imgLabel.setIcon(resizedIcon);
+					imgPanel.revalidate();
+					imgPanel.repaint();
+				}
+			}
+		});
+		selectImgPanel.add(selectImgBtn);
+		
+		imgPanel.add(selectImgPanel, BorderLayout.SOUTH);
+		
 		detailsDialog.setVisible(true);
+	}
+	
+	private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+		Image image = icon.getImage();
+		
+		Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		
+		return new ImageIcon(resizedImage);
 	}
 }
