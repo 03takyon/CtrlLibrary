@@ -39,10 +39,11 @@ public class GameDetails {
 	private JPanel submitPanel; // GameDetails HAS-A submitPanel
 	private File selectedGame; // GameDetails HAS-A selectedGame
 	private JButton selectImgBtn; // GameDetails HAS-A selectImgBtn
-	private ImageIcon icon; // GameDetails HAS-A icon
 	private JPanel imgPanel; // GameDetails HAS-A imgPanel
 	private JPanel selectImgPanel; //GameDetails HAS-A selectImgPanel
 	private JLabel imgLabel; // GameDetails HAS-A imgLabel
+	private ImageIcon resizedIcon; // GameDetails HAS-A resizedIcon
+	private ImageIcon newIcon; // GameDetails HAS-A newIcon
 	
 	public GameDetails(GameLibrary gameLibrary) {
 		detailsDialog = new JDialog();
@@ -50,7 +51,7 @@ public class GameDetails {
 		detailsDialog.setLocationRelativeTo(null);
 		detailsDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
-		icon = new ImageIcon("images/default.jpg");
+		resizedIcon = new ImageIcon("images/default.jpg");
 		
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.DARK_GRAY);
@@ -89,11 +90,11 @@ public class GameDetails {
 				String newTitle = changeTitleFld.getText();
 				
 				if (newTitle.isEmpty()) {
-					Game game = new Game(selectedGame.getName(), selectedGame.getAbsolutePath(), icon);
+					Game game = new Game(selectedGame.getName(), selectedGame.getAbsolutePath(), resizedIcon);
 					
 					gameLibrary.addGame(game);
 				} else {
-					Game game = new Game(newTitle, selectedGame.getAbsolutePath(), icon);
+					Game game = new Game(newTitle, selectedGame.getAbsolutePath(), resizedIcon);
 					
 					gameLibrary.addGame(game);
 				}
@@ -131,7 +132,7 @@ public class GameDetails {
 		imgPanel.setPreferredSize(new Dimension(128, 128));
 		imgPanel.setBackground(Color.DARK_GRAY);
 		
-		imgLabel = new JLabel(icon);
+		imgLabel = new JLabel(resizedIcon);
 		imgPanel.add(imgLabel);
 		
 		panel.add(imgPanel, BorderLayout.EAST);
@@ -151,9 +152,9 @@ public class GameDetails {
 				if (option == JFileChooser.APPROVE_OPTION) {
 					File selectedImage = fileChooser.getSelectedFile();
 					
-					icon = new ImageIcon(selectedImage.getPath());
+					newIcon = new ImageIcon(selectedImage.getPath());
 					
-					ImageIcon resizedIcon = resizeIcon(icon, imgPanel.getWidth(), imgPanel.getHeight());
+					resizedIcon = resizeIcon(newIcon, imgPanel.getWidth(), imgPanel.getHeight());
 					
 					imgLabel.setIcon(resizedIcon);
 					imgPanel.revalidate();

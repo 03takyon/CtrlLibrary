@@ -2,6 +2,7 @@ package com.elliottwahl.ctrllibrary;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.HashMap;
@@ -49,11 +50,16 @@ public class GameLibrary {
 				panel.setLayout(new FlowLayout());
 				panel.setBackground(Color.DARK_GRAY);
 			}
+			
+			JPanel gamePanel = new JPanel(new BorderLayout());
+			gamePanel.setPreferredSize(new Dimension(128, 150));
+			gamePanel.setBackground(Color.DARK_GRAY);
 
-			JLabel gameLbl = new JLabel(game.getTitle());
+			JLabel gameLbl = new JLabel(game.getTitle(), SwingConstants.CENTER);
 			gameLbl.setForeground(Color.WHITE);
-			panel.add(gameLbl);
+			gamePanel.add(gameLbl, BorderLayout.SOUTH);
 
+			panel.add(gamePanel);
 			panel.revalidate();
 			panel.repaint();
 		} else {
