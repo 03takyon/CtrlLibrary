@@ -154,7 +154,7 @@ public class GameDetails {
 					
 					newIcon = new ImageIcon(selectedImage.getPath());
 					
-					resizedIcon = resizeIcon(newIcon, imgPanel.getWidth(), imgPanel.getHeight());
+					resizedIcon = resizeIcon(newIcon, 128, 128);
 					
 					imgLabel.setIcon(resizedIcon);
 					imgPanel.revalidate();
