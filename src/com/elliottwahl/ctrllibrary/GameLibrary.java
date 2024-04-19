@@ -51,9 +51,17 @@ public class GameLibrary {
 				panel.setBackground(Color.DARK_GRAY);
 			}
 			
+			JPanel imgPanel = new JPanel(new BorderLayout());
+			imgPanel.setPreferredSize(new Dimension(128, 128));
+			imgPanel.setBackground(Color.DARK_GRAY);
+			
 			JPanel gamePanel = new JPanel(new BorderLayout());
 			gamePanel.setPreferredSize(new Dimension(128, 150));
 			gamePanel.setBackground(Color.DARK_GRAY);
+			
+			JLabel imageLbl = new JLabel(game.getIcon());
+			imgPanel.add(imageLbl, BorderLayout.NORTH);
+			gamePanel.add(imgPanel);
 
 			JLabel gameLbl = new JLabel(game.getTitle(), SwingConstants.CENTER);
 			gameLbl.setForeground(Color.WHITE);
