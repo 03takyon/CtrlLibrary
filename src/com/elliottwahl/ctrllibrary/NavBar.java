@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  * Lead Author(s):
  * @author Elliott Wahl
@@ -63,6 +65,26 @@ public class NavBar {
 		searchField.setPreferredSize(new Dimension(200, 30));
 		searchField.setBackground(Color.GRAY);
 		searchField.setForeground(Color.WHITE);
+		searchField.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				search();
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				search();
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+			}
+			
+			private void search() {
+				String searchText = searchField.getText();
+				gameLibrary.searchFor(searchText);
+			}
+		});
 		searchPanel.add(searchField, gbc);
 		panel.add(searchPanel, BorderLayout.EAST);
 	}
