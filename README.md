@@ -10,3 +10,6 @@ Effortlessly manage, categorize, and explore your personal video game collection
 ![Main Window](images/main_wireframe.jpg)
 
 ![Details Window](images/details_wireframe.jpg)
+
+## Requirements Traceability Matrix
+![Requirements Traceability Matrix](images/rtm.jpg)
