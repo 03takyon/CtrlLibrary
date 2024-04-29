@@ -5,9 +5,10 @@ import javax.swing.SwingUtilities;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.9.2024.004
+ * Version/date: 4.28.2024.005
  * 
- * Responsibilities of class:
+ * Responsibilities of class: initiate the application, utilizing 'SwingUtilities.invokeLater' to safely start up the GUI in the
+ * Event Dispatch Thread
  * 
  */
 public class Main {
