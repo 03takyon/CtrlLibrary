@@ -86,7 +86,7 @@ public class GameLibrary {
 		if (!games.containsKey(path)) {
 			games.put(path, game);
 			
-			if (games.size() == 1) {
+			if (games.size() >= 1) {
 				panel.removeAll();
 				panel.setLayout(new FlowLayout());
 				panel.setBackground(Color.DARK_GRAY);
@@ -110,16 +110,18 @@ public class GameLibrary {
 	 * @param query
 	 */
 	public void searchFor(String query) {
-		panel.removeAll();
-		games.values().stream()
-			.filter(game -> game.getTitle().toLowerCase().contains(query.toLowerCase()))
-			.forEach(game -> {
-				JPanel gamePanel  = createGamePanel(game);
-				panel.add(gamePanel);
-			});
-		
-		panel.revalidate();
-		panel.repaint();
+		if (games.size() > 1) {
+			panel.removeAll();
+			games.values().stream()
+				.filter(game -> game.getTitle().toLowerCase().contains(query.toLowerCase()))
+				.forEach(game -> {
+					JPanel gamePanel  = createGamePanel(game);
+					panel.add(gamePanel);
+				});
+			
+			panel.revalidate();
+			panel.repaint();
+		}
 	}
 	
 	/**
