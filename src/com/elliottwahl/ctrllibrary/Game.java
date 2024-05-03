@@ -1,23 +1,27 @@
 package com.elliottwahl.ctrllibrary;
 
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 
 /**
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.28.2024.004
+ * Version/date: 5.2.2024.005
  * 
  * Responsibilities of class: manage information about games, handling operations related to settings and retrieving details like
  * title, developer, genre, executable path, and icon
  * 
  */
-public class Game {
+
+// Game IS-A Serializable
+public class Game implements Serializable {
 	private String title; // Game HAS-A title
 	private String genre; // Game HAS-A genre
 	private String developer; // Game HAS-A developer
 	private String path; // Game HAS-A path
-	private ImageIcon icon; // Game HAS-A icon
+	private transient ImageIcon icon; // Game HAS-A icon
 	
 	/**
 	 * assigns various attributes to the Game object upon creation
