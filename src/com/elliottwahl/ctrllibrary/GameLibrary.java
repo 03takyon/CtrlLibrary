@@ -86,7 +86,7 @@ public class GameLibrary {
 		if (!games.containsKey(path)) {
 			games.put(path, game);
 			
-			if (games.size() >= 1) {
+			if (games.size() == 1) {
 				panel.removeAll();
 				panel.setLayout(new FlowLayout());
 				panel.setBackground(Color.DARK_GRAY);
