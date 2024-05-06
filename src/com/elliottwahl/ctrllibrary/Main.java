@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.28.2024.005
+ * Version/date: 5.3.2024.006
  * 
  * Responsibilities of class: initiate the application, utilizing 'SwingUtilities.invokeLater' to safely start up the GUI in the
  * Event Dispatch Thread
@@ -16,6 +16,8 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new UserInterface();
+				
+				GameLibrary.loadLibrary();
 			}
 		});
 	}

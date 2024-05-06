@@ -5,6 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import javax.swing.JLabel;
@@ -15,15 +21,15 @@ import javax.swing.SwingConstants;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.28.2024.004
+ * Version/date: 5.5.2024.006
  * 
  * Responsibilities of class: manages a collection of game entries, providing functionalities to add, search, and display games
  * 
  */
 public class GameLibrary {
-	private JPanel panel; // GameLibrary HAS-A panel
-	private JLabel noGamesLbl; // GameLibrary HAS-A noGamesLbl
-	private HashMap<String, Game> games; // GameLibrary HAS-A games
+	private static JPanel panel; // GameLibrary HAS-A panel
+	private static JLabel noGamesLbl; // GameLibrary HAS-A noGamesLbl
+	private static HashMap<String, Game> games; // GameLibrary HAS-A games
 
 	/**
 	 * initialize a panel to display the library and setup a structure to store games
@@ -45,12 +51,83 @@ public class GameLibrary {
 	}
 	
 	/**
+	 * persists the current state of the games HashMap to 'games.txt'
+	 */
+	private void saveLibrary() {
+		try {
+			FileOutputStream fileOut = new FileOutputStream("games.txt");
+			
+			ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+			objOut.writeObject(games);
+			
+			fileOut.close();
+			objOut.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * loads the games HashMap data from 'games.txt'
+	 */
+	public static void loadLibrary() {
+		File file = new File("games.txt");
+		
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (file.length() != 0) {
+			try {
+				FileInputStream fileIn = new FileInputStream(file);
+				
+				ObjectInputStream objIn = new ObjectInputStream(fileIn);
+				
+				HashMap<String, Game> newGames = (HashMap<String, Game>) objIn.readObject();
+				
+				if (newGames != null) {
+					games = newGames;
+					refreshUI();
+				}
+				
+				fileIn.close();
+				objIn.close();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * refreshes the UI to reflect the current state of the games HashMap
+	 */
+	private static void refreshUI() {
+		panel.removeAll();
+		if (games.isEmpty()) {
+			panel.add(noGamesLbl);
+		} else {
+			panel.setLayout(new FlowLayout());
+			for (Game game : games.values()) {
+				JPanel gamePanel = createGamePanel(game);
+				panel.add(gamePanel);
+			}
+		}
+		
+		panel.revalidate();
+		panel.repaint();
+	}
+	
+	/**
 	 * initialize panel for individual games
 	 * 
 	 * @param game
 	 * @return gamePanel
 	 */
-	private JPanel createGamePanel(Game game) {
+	private static JPanel createGamePanel(Game game) {
 		// top panel to hold the imgLabel
 		JPanel imgPanel = new JPanel(new BorderLayout());
 		imgPanel.setPreferredSize(new Dimension(128, 128));
@@ -93,6 +170,8 @@ public class GameLibrary {
 			}
 
 			JPanel gamePanel = createGamePanel(game);
+			
+			saveLibrary();
 			
 			panel.add(gamePanel);
 			panel.revalidate();
