@@ -3,7 +3,10 @@ package com.elliottwahl.ctrllibrary;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,7 +23,7 @@ import javax.swing.WindowConstants;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 4.28.2024.004
+ * Version/date: 5.16.2024.005
  * 
  * Responsibilities of class: creating and managing the GUI for editing and updating the properties of a game
  * 
@@ -44,6 +47,11 @@ public class GameDetails {
 	private JLabel imgLabel; // GameDetails HAS-A imgLabel
 	private ImageIcon resizedIcon; // GameDetails HAS-A resizedIcon
 	private ImageIcon newIcon; // GameDetails HAS-A newIcon
+	private JLabel changeGenreLbl; // GameDetails HAS-A changeGenreLbl
+	private JTextField changeGenreFld; // GameDetails HAS-A changeGenreFld
+	private JLabel changeDevLbl; // GameDetails HAS-A changeDevLbl
+	private JTextField changeDevFld; // GameDetails HAS-A changeDevFld
+	private GridBagConstraints gbc; // GameDetails HAS-A gbc
 	
 	/**
 	 * initialize and display a configuration dialog for managing game properties
@@ -51,6 +59,8 @@ public class GameDetails {
 	 * @param gameLibrary
 	 */
 	public GameDetails(GameLibrary gameLibrary) {
+		gbc = new GridBagConstraints();
+		
 		// setup the main dialog window for game details
 		detailsDialog = new JDialog();
 		detailsDialog.setSize(410, 350);
@@ -72,20 +82,68 @@ public class GameDetails {
 		panel.add(selectPanel, BorderLayout.NORTH);
 		
 		// middle panel for editing title
-		editPanel = new JPanel();
+		editPanel = new JPanel(new GridBagLayout());
 		editPanel.setBackground(Color.DARK_GRAY);
-		panel.add(editPanel);
+		panel.add(editPanel, BorderLayout.CENTER);
 		
-		// label and text field for changing the game title
+		// title label and text field
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.anchor = GridBagConstraints.LINE_END;
 		changeTitleLbl = new JLabel("Title: ");
 		changeTitleLbl.setForeground(Color.WHITE);
-		editPanel.add(changeTitleLbl);
-		
-		changeTitleFld = new JTextField();
-		changeTitleFld.setPreferredSize(new Dimension(200, 30));
+		editPanel.add(changeTitleLbl, gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		changeTitleFld = new JTextField(20);
 		changeTitleFld.setBackground(Color.GRAY);
 		changeTitleFld.setForeground(Color.WHITE);
-		editPanel.add(changeTitleFld);
+		Dimension size = new Dimension(150, 30);
+		changeTitleFld.setPreferredSize(size);
+		changeTitleFld.setMinimumSize(size);
+		changeTitleFld.setMaximumSize(size);
+		editPanel.add(changeTitleFld, gbc);
+
+		// genre label and text field
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.anchor = GridBagConstraints.LINE_END;
+		changeGenreLbl = new JLabel("Genre: ");
+		changeGenreLbl.setForeground(Color.WHITE);
+		editPanel.add(changeGenreLbl, gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		changeGenreFld = new JTextField(20);
+		changeGenreFld.setBackground(Color.GRAY);
+		changeGenreFld.setForeground(Color.WHITE);
+		changeGenreFld.setPreferredSize(size);
+		changeGenreFld.setMinimumSize(size);
+		changeGenreFld.setMaximumSize(size);
+		editPanel.add(changeGenreFld, gbc);
+
+		// developer label and text field
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.anchor = GridBagConstraints.LINE_END;
+		changeDevLbl = new JLabel("Developer: ");
+		changeDevLbl.setForeground(Color.WHITE);
+		editPanel.add(changeDevLbl, gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		changeDevFld = new JTextField(20);
+		changeDevFld.setBackground(Color.GRAY);
+		changeDevFld.setForeground(Color.WHITE);
+		changeDevFld.setPreferredSize(size);
+		changeDevFld.setMinimumSize(size);
+		changeDevFld.setMaximumSize(size);
+		editPanel.add(changeDevFld, gbc);
 		
 		// bottom panel for submit button
 		submitPanel = new JPanel();
@@ -102,13 +160,15 @@ public class GameDetails {
 			public void actionPerformed(ActionEvent e) {
 				// create and add a new game object with the updated title
 				String newTitle = changeTitleFld.getText();
+				String newGenre = changeGenreFld.getText();
+				String newDev = changeDevFld.getText();
 				
 				if (newTitle.isEmpty()) {
-					Game game = new Game(selectedGame.getName(), selectedGame.getAbsolutePath(), resizedIcon);
+					Game game = new Game(selectedGame.getName(), newDev, newGenre, selectedGame.getAbsolutePath(), resizedIcon);
 					
 					gameLibrary.addGame(game);
 				} else {
-					Game game = new Game(newTitle, selectedGame.getAbsolutePath(), resizedIcon);
+					Game game = new Game(newTitle, newDev, newGenre, selectedGame.getAbsolutePath(), resizedIcon);
 					
 					gameLibrary.addGame(game);
 				}

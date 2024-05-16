@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  * Lead Author(s):
  * @author Elliott Wahl
  * 
- * Version/date: 5.3.2024.006
+ * Version/date: 5.11.2024.007
  * 
  * Responsibilities of class: manage information about games, handling operations related to settings and retrieving details like
  * title, developer, genre, executable path, and icon
@@ -16,12 +16,9 @@ import javax.swing.ImageIcon;
  */
 
 // Game IS-A Serializable
-public class Game implements Serializable {
+public class Game extends GameBase implements Serializable {
 	private static final long serialVersionUID = 1L; // Game HAS-A serialVersionUID
 	
-	private String title; // Game HAS-A title
-	private String genre; // Game HAS-A genre
-	private String developer; // Game HAS-A developer
 	private String path; // Game HAS-A path
 	private ImageIcon icon; // Game HAS-A icon
 	
@@ -32,28 +29,10 @@ public class Game implements Serializable {
 	 * @param path
 	 * @param icon
 	 */
-	public Game(String title, String path, ImageIcon icon) {
-		this.title = title;
+	public Game(String title, String developer, String genre, String path, ImageIcon icon) {
+		super(title, developer, genre);
 		this.path = path;
 		this.icon = icon;
-	}
-	
-	/**
-	 * returns the title
-	 * 
-	 * @return title
-	 */
-	public String getTitle() {
-		return title;
-	}
-	
-	/**
-	 * sets a new title
-	 * 
-	 * @param title
-	 */
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	/**
@@ -65,41 +44,6 @@ public class Game implements Serializable {
 		return path;
 	}
 	
-	/**
-	 * returns the developer
-	 * 
-	 * @return developer
-	 */
-	public String getDeveloper() {
-		return developer;
-	}
-	
-	/**
-	 * sets a new developer
-	 * 
-	 * @param developer
-	 */
-	public void setDeveloper(String developer) {
-		this.developer = developer;
-	}
-	
-	/**
-	 * returns the genre
-	 * 
-	 * @return genre
-	 */
-	public String getGenre() {
-		return genre;
-	}
-	
-	/**
-	 * sets a new genre
-	 * 
-	 * @param genre
-	 */
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
 	
 	/**
 	 * returns the icon
