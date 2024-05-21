@@ -22,7 +22,11 @@ public class Game extends GameBase implements Serializable {
 	private String path; // Game HAS-A path
 	private ImageIcon icon; // Game HAS-A icon
 	
+	/**
+	 * no-argument constructor without initializing superclass fields
+	 */
 	public Game() {
+		// no default values are provided to avoid overriding
 		super();
 	}
 	

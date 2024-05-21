@@ -19,6 +19,9 @@ public abstract class GameBase implements Serializable {
 	private String developer; // GameBase HAS-A developer
 	private String genre; // GameBase HAS-A genre
 	
+	/**
+	 * no-argument constructor to avoid overriding game attributes
+	 */
 	public GameBase() {
 		
 	}
