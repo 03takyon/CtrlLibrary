@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * 
  * Version/date: 4.9.2024.001
  * 
- * Responsibilities of class:
+ * Responsibilities of class: creates objects necessary to display the main program window
  * 
  */
 public class UserInterface {
@@ -20,6 +20,9 @@ public class UserInterface {
 	private NavBar navBar; // UserInterface HAS-A navBar
 	private GameLibrary gameLibrary; // UserInterface HAS-A gameLibrary
 	
+	/**
+	 * initialize the main program window
+	 */
 	public UserInterface() {
 		frame = new JFrame("CtrlLibrary");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

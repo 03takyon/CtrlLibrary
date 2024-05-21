@@ -20,7 +20,7 @@ import javax.swing.event.DocumentListener;
  * 
  * Version/date: 4.21.2024.004
  * 
- * Responsibilities of class:
+ * Responsibilities of class: creating and managing the navigation bar to add and search for games
  * 
  */
 public class NavBar {
@@ -31,6 +31,11 @@ public class NavBar {
 	private JPanel buttonPanel; // NavBar HAS-A buttonPanel;
 	private GridBagConstraints gbc; // NavBar HAS-A gbc;
 	
+	/**
+	 * initialize the navigation bar, creating and displaying a button and search field
+	 * 
+	 * @param gameLibrary
+	 */
 	public NavBar(GameLibrary gameLibrary) {
 		panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.DARK_GRAY);
@@ -61,6 +66,9 @@ public class NavBar {
 		buttonPanel.add(addGameBtn, gbc);
 		panel.add(buttonPanel, BorderLayout.WEST);
 		
+		/**
+		 * DocumentListener allows for real-time searches
+		 */
 		searchField = new JTextField();
 		searchField.setPreferredSize(new Dimension(200, 30));
 		searchField.setBackground(Color.GRAY);
@@ -89,6 +97,11 @@ public class NavBar {
 		panel.add(searchPanel, BorderLayout.EAST);
 	}
 	
+	/**
+	 * returns the panel
+	 * 
+	 * @return panel
+	 */
 	public JPanel getPanel() {
 		return panel;
 	}

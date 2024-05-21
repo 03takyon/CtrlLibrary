@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
  * Version/date: 5.3.2024.006
  * 
  * Responsibilities of class: initiate the application, utilizing 'SwingUtilities.invokeLater' to safely start up the GUI in the
- * Event Dispatch Thread
+ * event dispatch thread
  * 
  */
 public class Main {
