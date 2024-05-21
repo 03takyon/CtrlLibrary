@@ -22,6 +22,10 @@ public class Game extends GameBase implements Serializable {
 	private String path; // Game HAS-A path
 	private ImageIcon icon; // Game HAS-A icon
 	
+	public Game() {
+		super();
+	}
+	
 	/**
 	 * assigns various attributes to the Game object upon creation
 	 * 

@@ -1,5 +1,7 @@
 package com.elliottwahl.ctrllibrary;
 
+import java.io.Serializable;
+
 /**
  * Lead Author(s):
  * @author Elliott Wahl
@@ -10,10 +12,16 @@ package com.elliottwahl.ctrllibrary;
  * 
  */
 
-public abstract class GameBase {
+public abstract class GameBase implements Serializable {
+	private static final long serialVersionUID = 1L; // GameBase HAS-A serialVersionUID
+	
 	private String title; // GameBase HAS-A title
 	private String developer; // GameBase HAS-A developer
 	private String genre; // GameBase HAS-A genre
+	
+	public GameBase() {
+		
+	}
 	
 	/**
 	 * assigns the title, developer, and genre of a game object
